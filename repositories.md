@@ -95,3 +95,5 @@ ON ur.repo_id = r.id
 WHERE r.id = 1
 ORDER BY ur.`id`
 ```
+
+### Get all repos by user id and project id
