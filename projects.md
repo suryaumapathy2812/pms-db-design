@@ -172,3 +172,26 @@ ORDER BY `id`
 ### create new project by user id
 ```sql
 ```
+
+
+### Get all project users
+```sql
+SELECT 
+	up.id AS id, 
+	u.id AS user_id,
+	p.id AS project_id,
+	p.name AS project_name,
+	up.user_role AS `role`,
+
+	up.created_at,
+	up.modified_at	
+	
+FROM `user_projects` AS up
+JOIN `users` AS u
+ON up.user_id = u.id
+JOIN `projects` AS p
+ON up.project_id = p.id
+WHERE u.id = 1
+ORDER BY up.`id`;
+```
+
