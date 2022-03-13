@@ -56,6 +56,15 @@
   }
 ```
 
+##### Add User
+```java
+@PutMapping("{id}/users")
+public void addUser(@PathVariable("id") Integer id,
+  @RequestParam(name = "username", required = true) String username) {
+  }
+```
 
+
+			
   
   
