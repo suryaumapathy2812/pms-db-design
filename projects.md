@@ -1,6 +1,6 @@
 # PROJECTS TABLE
 ## ADMIN
-### get all projects
+### Get All Projects
 ```sql
 SELECT 
 	up.id AS id, 
@@ -16,7 +16,7 @@ ON up.project_id = p.id
 ORDER BY up.`id`;
 
 ```
-### get all projects details
+### Get All Projects Details
 ```sql
 SELECT 
 	up.id AS `id`,
@@ -39,7 +39,7 @@ ON up.user_id = u.id
 
 ORDER BY `id`
 ```
-### get single project by project id
+### Get Single Project by Project Id
 ```sql
 # get user's single project details
 SELECT 
@@ -65,7 +65,7 @@ WHERE p.id = 1
 
 ORDER BY `id`
 ```
-### get single project details by project id
+### Get Single Project Details by Project Id
 ```sql
 # get user's single project details
 SELECT 
@@ -91,12 +91,15 @@ WHERE p.id = 1
 
 ORDER BY `id`
 ```
-###  update single project details by project id
+###  Update Single Project Details by Project Id and User Id
 ```sql
+UPDATE `projects`
+SET `name` = ? , `description` = ? , `modified_by` = ?
+WHERE `id` = ?;
 ```
 
 ## USER
-### get all user projects by user id
+### Get All User Projects by User Id
 ```sql
 SELECT 
 	up.id AS id, 
@@ -116,7 +119,7 @@ ON up.project_id = p.id
 WHERE u.id = 1
 ORDER BY up.`id`;
 ```
-### get user projects details by user id
+### Get User Projects Details by User Id
 ```sql
 SELECT 
 	up.id AS `id`,
@@ -166,11 +169,32 @@ AND p.id = 1
 
 ORDER BY `id`
 ```
-### update single project by user id and project id
+
+### Create New Project by User Id
 ```sql
+INSERT INTO `projects`
+	(`name`, `description`,`created_by`,`modified_by`)
+VALUES
+	(?,?,?,?);
+	
+INSERT INTO `user_projects`
+	(`user_id`, `project_id`, `user_role`, `created_by`, `modified_by`)
+VALUES
+	(?,?,?,?,?)
 ```
-### create new project by user id
+
+### update Project Details by Project Id and User Id
 ```sql
+UPDATE `projects`
+SET `name` = ? , `description` = ? , `modified_by` = ?
+WHERE `id` = ?;
+```
+
+### Update User Role for a Project by Project Id and User Id
+```sql
+UPDATE `user_projects`
+SET `user_role` = ?
+WHERE `user_id` = ?, `project_id` = ?;
 ```
 
 
