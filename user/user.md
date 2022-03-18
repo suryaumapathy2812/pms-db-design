@@ -1,6 +1,6 @@
 # USERS TABLE
 ## ADMIN
-### get all users
+### Get all users
 ```sql
 SELECT  
 	`id`,
@@ -12,20 +12,40 @@ SELECT
 	`created_at`,
 	`modified_at`
 FROM `users`
-WHERE `status` != 'ARCHIVED'
+WHERE `status` != 'ARCHIVED' 
+AND `active` = 1;
 ```
-### create new user
+### Create New User
 ```sql
+INSERT INTO `users` (`fist_name`,`last_name`,`email`) 
+VALUES (?,?,?);
 ```
-### get single user details
+
+### Get Single User Details
 ```sql
+SELECT 
+	`id`,
+	`first_name`,
+	`last_name`,
+	`email`,
+	`status`,
+	`active`
+	`created_at`,
+	`modified_at`
+FROM `users`
+WHERE `status`!= 'ARCHIVED'
+AND `active` = 1
+AND `id` = ?;
 ```
-### update user details by user id
+### Update User Details by User Id
 ```sql
+UPDATE `users`
+SET `first_name`= ? , `last_name` = ? , `email` = ?
+WHERE `id`= ?
 ```
 
 ## USER
-### get user details by user id
+### Get User Details by User Id
 ```sql
 SELECT 
 	`id`,
@@ -41,6 +61,17 @@ WHERE `status`!= 'ARCHIVED'
 AND `id` = 1;
 
 ```
-### update user details by user id
+### Update user details by user id
 ```sql
+UPDATE `users`
+SET `first_name`= ? , `last_name` = ? , `email` = ?
+WHERE `id`= ?
+```
+
+
+### Deactivate User Account
+```sql
+UPDATE `users`
+SET `status`= 'ARCHIVED' , `active` = 0
+WHERE `id`= ?
 ```
